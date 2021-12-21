@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //cuando demos de alta este usuario spatie sabra que es superadmin
+        Gate::before(function ($user, $ability) {
+            return $user->email == 'admin@gmail.com' ? true : null;
+        });
     }
 }
